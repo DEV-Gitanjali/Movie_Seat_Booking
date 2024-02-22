@@ -27,8 +27,18 @@ function updateSelectedCount() {
     total.innerText = selectedSeatsCount * ticketPrice;
  }
 
- 
-
+// get data from localstorage and populate Ul
+function populateUI() {
+    const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
+  
+    if (selectedSeats !== null && selectedSeats.length > 0) {
+      seats.forEach((seat, index) => {
+        if (selectedSeats.indexOf(index) > -1) {
+          seat.classList.add('selected');
+        }
+      });
+    }
+}
 //  movie select event
 movieSelect.addEventListener('change' , e =>{
     ticketPrice = +e.target.value;
